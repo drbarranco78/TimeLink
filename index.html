@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- <script src="HTTP://code.jquery.com/jquery-latest.js"></script> -->
+    <title>TimeLink</title>
+</head>
+<body>
+    <!-- ZONA DE CABECERA -->
+    <header>
+        <div class="logotipo">
+            <img src="img/timelink.webp" id="logo-cabecera" class="icono-cabecera" alt="Logotipo de TimeLink">
+            <h3>TimeLink</h3>
+        </div>
+
+        
+    </header>
+
+    <h1 class="titulo">TimeLink - Control de horarios</h1>
+    <!-- Formulario para el login -->
+    <section class="login">
+        <fieldset>
+            <legend>Inicio de Sesión</legend>
+            <form id="formulario-login" action="" method="post">
+
+                <label for="userid">Nº de DNI / NIE</label>
+                <input type="text" name="userid" id="userid" maxlength="10" required />
+                <label for="current-password">Contraseña:</label>
+                <input type="password" name="current-password" id="current-password" maxlength="20" required />
+                <input type="submit" class="boton-login" value="Acceder" />
+            </form>
+        </fieldset>
+        <p class="pie-formularios">No tienes cuenta?<a id="pie-formularios-login" href="#">Regístrate</a></p>
+        <div class="exito-login"></div>
+        <div class="error-login"></div>
+    </section>
+
+    <!-- Formulario de registro -->
+    <section class="registro">
+        <fieldset>
+            <legend>Nuevo Usuario</legend>
+            <form id="formulario-registro" action="" method="get">
+                <label for="dni">Nº de documento:</label>
+                <input type="text" name="dni" id="dni" maxlength="10" required />
+
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" maxlength="50" required />
+
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" name="apellidos" id="apellidos" maxlength="80" required />
+
+                <label for="email-registro">Dirección de correo</label>
+                <input type="text" name="email-registro" id="email-registro" maxlength="60" required />
+
+                <div class="nuevoPassword">
+                    <label for="contrasena1">Contraseña:</label>
+                    <input type="password" name="contrasena1" id="contrasena1" maxlength="20" required />
+                    <i class="fa-solid fa-eye" id="mostrarPassword1"></i>
+                </div>
+                <div class="repetirPassword">
+                    <label for="contrasena2">Repetir Contraseña:</label>
+                    <input type="password" name="contrasena2" id="contrasena2" maxlength="20" required />
+                    <i class="fa-solid fa-eye" id="mostrarPassword2"></i>
+                </div>
+                
+                <label for="fechaNac">Fecha de Nacimiento</label>
+                <input type="date" name="fechaNac" id="fechaNac" required>
+                <div class="radio-genero">
+                    <label id="lbGenero">Género</label>
+                    <div class="rd1">
+
+                        <input type="radio" name="genero" id="rdHombre" value="hombre" checked>
+                        <label for="rdHombre">Hombre</label>
+                    </div>
+                    <div class="rd2">
+                        <input type="radio" name="genero" id="rdMujer" value="mujer">
+                        <label for="rdMujer">Mujer</label>
+                    </div>
+                </div>
+
+                <div class="botones-registro">
+                    <input type="reset" name="limpiar" id="limpiar" value="Limpiar" />
+                    <input type="submit" name="enviar" id="enviar" value="Enviar" />
+                </div>
+
+            </form>
+        </fieldset>
+        <p class="pie-formularios">Ya tienes una cuenta?<a id="pie-formularios-registro" href="#">Inicia Sesión</a></p>
+        <div class="exito-registro"></div>
+        <div class="error-registro"></div>
+    </section>
+
+    <script src="js/index.js"></script>
+    
+</body>
+</html>

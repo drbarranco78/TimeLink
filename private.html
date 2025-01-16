@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/private.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>TimeLink</title>
+</head>
+
+<body>
+    <header>
+        <div class="logotipo">
+            <img src="img/timelink.webp" id="logo-cabecera" class="icono-cabecera" alt="Logotipo de TimeLink">
+            <h3>TimeLink</h3>
+        </div>
+
+        <div class="usuario">
+            <div id="mensaje-bienvenida">
+                <h3>Bienvenido, Usuario</h3>
+            <img src="img/ico_usuario_activo.png" id="icono-usuario" class="icono-cabecera" alt="Icono de usuario">
+        </div>
+
+        </div>
+    </header>
+
+    <div class="contenido-principal">
+        <h2 class="fecha-actual"></h2>
+        <h3 class="mensaje-estado">Aún no has comenzado la jornada</h3>
+
+        <div id="botones-jornada">
+            <button id="btn-comenzar" class="btn-jornada">
+                <i class="fas fa-play"></i> Comenzar Jornada
+            </button>
+            <button id="btn-detener" class="btn-jornada d-none">
+                <i class="fas fa-stop"></i> Detener Jornada
+            </button>
+            <button id="btn-descanso" class="btn-jornada d-none">
+                <i class="fas fa-coffee"></i> Descanso
+            </button>
+            <button id="btn-terminar-descanso" class="btn-jornada d-none">
+                <i class="fas fa-clock"></i> Terminar descanso
+            </button>
+        </div>
+
+        <div class="historial">
+            <h2 class="d-none">Historial de acciones
+                <span id="mostrar-historial" class="icono-mostrar">
+                    <i class="fas fa-eye"></i> <!-- Icono para mostrar/ocultar -->
+                </span>
+                <span id="borrar-historial" class="icono-borrar">
+                    <i class="fas fa-trash-alt"></i> <!-- Icono para borrar -->
+                </span>
+
+
+            </h2>
+
+            <ul class="lista-historial">
+                <!-- Los elementos se añadirán dinámicamente -->
+            </ul>
+        </div>
+    </div>
+
+
+
+    <script src="js/private.js"></script>
+
+</body>
+
+</html>
