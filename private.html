@@ -22,14 +22,24 @@
         <div class="usuario">
             <div id="mensaje-bienvenida">
                 <h3>Bienvenido, Usuario</h3>
-            <img src="img/ico_usuario_activo.png" id="icono-usuario" class="icono-cabecera" alt="Icono de usuario">
-        </div>
+                <img src="img/ico_usuario_activo.png" id="icono-usuario" class="icono-cabecera" alt="Icono de usuario">
+            </div>
 
         </div>
     </header>
 
     <div class="contenido-principal">
-        <h2 class="fecha-actual"></h2>
+        <div class="cabecera-ficha">
+            <div class="estado-actual">
+                <i id="icono-estado" class="fas fa-times-circle"></i>
+                <span id="estado">Fuera del trabajo</span>
+            </div>
+            <h2 class="fecha-actual"></h2>
+            <div class="reloj">
+                <i class="fas fa-clock"></i>
+                <span id="hora"></span>
+            </div>
+        </div>
         <h3 class="mensaje-estado">Aún no has comenzado la jornada</h3>
 
         <div id="botones-jornada">

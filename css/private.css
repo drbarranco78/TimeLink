@@ -13,7 +13,7 @@
     flex-direction: column;
     border: 2px solid #00AA9B;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     text-align: center; 
     background-color: whitesmoke;
     border-radius: 15px;
@@ -21,15 +21,60 @@
     margin: 50px auto;
     padding: 20px;
 }
-.fecha-actual{
-    margin-bottom: 20px;
+.cabecera-ficha {
+    display: flex;
+    justify-content: space-around; 
+    margin-bottom: 80px;
+    width: 100%;
+    /* align-items: center;  */
+    /* flex-wrap: wrap;  */
+    gap: 100px;
+    padding: 10px; 
+    background-color: #ccc; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.estado-actual, 
+.reloj {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px; 
+    font-weight: bold;
+}
+
+.fecha-actual {    
     background-color: #232D4B;
     color: whitesmoke;
     padding: 10px 20px;
     border-radius: 10px;
+    font-size: 24px; 
+    text-align: center; 
 }
+
+/* .reloj {
+    
+    font-weight: bold;
+    color: #333;
+} */
+
+
 .mensaje-estado{
     margin-bottom: 50px;
+}
+/* Colores para los diferentes estados */
+.estado-trabajando {
+    color: #28a745; 
+}
+
+.estado-descanso {
+    color: #0056b3; 
+}
+
+.estado-fuera {
+    color: #dc3545; 
+
 }
 
 #botones-jornada{
@@ -42,7 +87,7 @@
 .btn-jornada {
     background-color: #0056b3;
     color: white;
-    font-size: 1.2em;
+    /* font-size: 1.2em; */
     width: 10vw;
     display: flex;
     justify-content: center;

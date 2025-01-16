@@ -20,6 +20,23 @@ $(document).ready(function () {
 
     // Inserta la fecha en el HTML
     $('.fecha-actual').html(fechaFormateada);
+
+    // Función para actualizar el reloj
+    function actualizarReloj() {
+        const fecha = new Date();
+        const horas = String(fecha.getHours()).padStart(2, '0');
+        const minutos = String(fecha.getMinutes()).padStart(2, '0');
+        const segundos = String(fecha.getSeconds()).padStart(2, '0');
+        const horaFormateada = `${horas}:${minutos}:${segundos}`;
+
+        $('#hora').text(horaFormateada);
+    }
+
+    // Actualizar el reloj cada segundo
+    setInterval(actualizarReloj, 1000);
+
+    // Llamar a la función inmediatamente para mostrar la hora sin esperar 1 segundo
+    actualizarReloj();
 });
 
 let fechaInicio;
@@ -37,6 +54,13 @@ $("#btn-comenzar").click(function () {
     $(this).addClass("d-none");
     $("#btn-detener").removeClass("d-none");
     $("#btn-descanso").removeClass("d-none");
+    // Cambiar estado y color
+    $("#estado").text("Trabajando")
+        .removeClass("estado-descanso estado-fuera")
+        .addClass("estado-trabajando");
+
+    // Cambiar icono
+    $("#icono-estado").attr("class", "fas fa-briefcase"); // Icono de "trabajando"
 });
 
 // Al hacer clic en "Detener jornada"
@@ -52,6 +76,13 @@ $("#btn-detener").click(function () {
     $("#btn-descanso").addClass("d-none");
     $("#btn-terminar-descanso").addClass("d-none");
     $("#btn-comenzar").removeClass("d-none");
+    // Cambiar estado y color
+    $("#estado").text("Fuera del trabajo")
+        .removeClass("estado-trabajando estado-descanso")
+        .addClass("estado-fuera");
+
+    // Cambiar icono
+    $("#icono-estado").attr("class", "fas fa-times-circle");
 });
 
 // Al hacer clic en "Descanso"
@@ -66,6 +97,13 @@ $("#btn-descanso").click(function () {
     // Ocultar botón "Descanso" y mostrar "Terminar descanso"
     $(this).addClass("d-none");
     $("#btn-terminar-descanso").removeClass("d-none");
+    // Cambiar estado y color
+    $("#estado").text("En descanso")
+        .removeClass("estado-trabajando estado-fuera")
+        .addClass("estado-descanso");
+
+    // Cambiar icono
+    $("#icono-estado").attr("class", "fas fa-coffee"); // Icono de "descanso"
 });
 
 // Al hacer clic en "Terminar descanso"
@@ -79,6 +117,12 @@ $("#btn-terminar-descanso").click(function () {
     // Restaurar el estado inicial del descanso
     $(this).addClass("d-none");
     $("#btn-descanso").removeClass("d-none");
+    $("#estado").text("Trabajando")
+        .removeClass("estado-descanso estado-fuera")
+        .addClass("estado-trabajando");
+
+    // Cambiar icono
+    $("#icono-estado").attr("class", "fas fa-briefcase");
 });
 
 // Función para agregar un nuevo evento al historial con fecha, hora y mensaje
