@@ -13,6 +13,7 @@
     flex-direction: column;
     border: 2px solid #00AA9B;
     align-items: center;
+    justify-content: center;
     text-align: center; 
     background-color: whitesmoke;
     border-radius: 15px;
