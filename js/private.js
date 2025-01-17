@@ -3,7 +3,7 @@ const $historialHeader = $('.historial h2');
 const $mostrarHistorial = $('#mostrar-historial');
 const $borrarHistorial = $('#borrar-historial');
 $(document).ready(function () {
-    // Obtén la fecha actual
+    // Obtener la fecha actual
     let fechaActual = new Date();
 
     // Extrae año, mes y día con métodos de Date
@@ -43,86 +43,117 @@ let fechaInicio;
 
 // Al hacer clic en "Comenzar jornada"
 $("#btn-comenzar").click(function () {
-    // Registrar la hora de inicio
-    fechaInicio = new Date();
-    const horaInicio = fechaInicio.toLocaleTimeString();
-    agregarHistorial("Jornada Iniciada");
-    // Actualizar mensaje de estado
-    $(".mensaje-estado").html(`Jornada iniciada a las ${horaInicio}`);
-    $('.historial h2').removeClass('d-none');
-    // Ocultar "Comenzar jornada" y mostrar los otros botones
-    $(this).addClass("d-none");
-    $("#btn-detener").removeClass("d-none");
-    $("#btn-descanso").removeClass("d-none");
-    // Cambiar estado y color
-    $("#estado").text("Trabajando")
-        .removeClass("estado-descanso estado-fuera")
-        .addClass("estado-trabajando");
+    mostrarDialogo("¿Comenzar la jornada?")
+        .then(() => {
+            // Si el usuario confirma la acción
+            // Registrar la hora de inicio
+            fechaInicio = new Date();
+            const horaInicio = fechaInicio.toLocaleTimeString();
+            agregarHistorial("Jornada Iniciada");
+            // Actualizar mensaje de estado
+            $(".mensaje-estado").html(`Jornada iniciada a las ${horaInicio}`);
+            $('.historial h2').removeClass('d-none');
+            // Ocultar "Comenzar jornada" y mostrar los otros botones
+            $(this).addClass("d-none");
+            $("#btn-detener").removeClass("d-none");
+            $("#btn-descanso").removeClass("d-none");
+            // Cambiar estado y color
+            $("#estado").text("Trabajando")
+                .removeClass("estado-descanso estado-fuera")
+                .addClass("estado-trabajando");
 
-    // Cambiar icono
-    $("#icono-estado").attr("class", "fas fa-briefcase"); // Icono de "trabajando"
+            // Cambiar icono
+            $("#icono-estado").attr("class", "fas fa-briefcase"); // Icono de "trabajando"
+        })
+        .catch(() => {
+            // Si el usuario cancela la acción, registra un mensaje en la consola
+            console.log("Acción cancelada");
+        });
 });
 
 // Al hacer clic en "Detener jornada"
 $("#btn-detener").click(function () {
-    const fechaFin = new Date();
-    const horaFin = fechaFin.toLocaleTimeString();
-    agregarHistorial("Jornada detenida");
-    // Actualizar mensaje de estado
-    $(".mensaje-estado").html(`Jornada finalizada a las ${horaFin}`);
+    mostrarDialogo("¿Finalizar la jornada?")
+        .then(() => {
+            const fechaFin = new Date();
+            const horaFin = fechaFin.toLocaleTimeString();
+            agregarHistorial("Jornada detenida");
+            // Actualizar mensaje de estado
+            $(".mensaje-estado").html(`Jornada finalizada a las ${horaFin}`);
 
-    // Restaurar el estado inicial de los botones
-    $(this).addClass("d-none");
-    $("#btn-descanso").addClass("d-none");
-    $("#btn-terminar-descanso").addClass("d-none");
-    $("#btn-comenzar").removeClass("d-none");
-    // Cambiar estado y color
-    $("#estado").text("Fuera del trabajo")
-        .removeClass("estado-trabajando estado-descanso")
-        .addClass("estado-fuera");
+            // Restaurar el estado inicial de los botones
+            $(this).addClass("d-none");
+            $("#btn-descanso").addClass("d-none");
+            $("#btn-terminar-descanso").addClass("d-none");
+            $("#btn-comenzar").removeClass("d-none");
+            // Cambiar estado y color
+            $("#estado").text("Fuera del trabajo")
+                .removeClass("estado-trabajando estado-descanso")
+                .addClass("estado-fuera");
 
-    // Cambiar icono
-    $("#icono-estado").attr("class", "fas fa-times-circle");
+            // Cambiar icono
+            $("#icono-estado").attr("class", "fas fa-times-circle");
+        })
+        .catch(() => {
+            console.log("Acción cancelada");
+        });
 });
 
 // Al hacer clic en "Descanso"
 $("#btn-descanso").click(function () {
-    // Registrar la hora de inicio del descanso
-    descansoInicio = new Date();
-    const horaDescanso = descansoInicio.toLocaleTimeString();
-    agregarHistorial("Descanso iniciado");
-    // Actualizar mensaje de estado
-    $(".mensaje-estado").html(`Descanso iniciado a las ${horaDescanso}`);
+    mostrarDialogo("¿Empezar un descanso?")
+        .then(() => {
+            // Registrar la hora de inicio del descanso
+            descansoInicio = new Date();
+            const horaDescanso = descansoInicio.toLocaleTimeString();
+            agregarHistorial("Descanso iniciado");
+            // Actualizar mensaje de estado
+            $(".mensaje-estado").html(`Descanso iniciado a las ${horaDescanso}`);
 
-    // Ocultar botón "Descanso" y mostrar "Terminar descanso"
-    $(this).addClass("d-none");
-    $("#btn-terminar-descanso").removeClass("d-none");
-    // Cambiar estado y color
-    $("#estado").text("En descanso")
-        .removeClass("estado-trabajando estado-fuera")
-        .addClass("estado-descanso");
+            // Ocultar botón "Descanso" y mostrar "Terminar descanso"
+            $(this).addClass("d-none");
+            $("#btn-terminar-descanso").removeClass("d-none");
+            // Cambiar estado y color
+            $("#estado").text("En descanso")
+                .removeClass("estado-trabajando estado-fuera")
+                .addClass("estado-descanso");
 
-    // Cambiar icono
-    $("#icono-estado").attr("class", "fas fa-coffee"); // Icono de "descanso"
+            // Cambiar icono
+            $("#icono-estado").attr("class", "fas fa-coffee"); // Icono de "descanso"
+        })
+        .catch(() => {
+            // Si el usuario cancela la acción, registra un mensaje en la consola
+            console.log("Acción cancelada");
+        });
+
 });
 
 // Al hacer clic en "Terminar descanso"
 $("#btn-terminar-descanso").click(function () {
-    const descansoFin = new Date();
-    const horaDescansoFin = descansoFin.toLocaleTimeString();
-    agregarHistorial("Descanso finalizado");
-    // Actualizar mensaje de estado
-    $(".mensaje-estado").html(`Descanso terminado a las ${horaDescansoFin}`);
+    mostrarDialogo("¿Volver al trabajo?")
+        .then(() => {
+            const descansoFin = new Date();
+            const horaDescansoFin = descansoFin.toLocaleTimeString();
+            agregarHistorial("Descanso finalizado");
+            // Actualizar mensaje de estado
+            $(".mensaje-estado").html(`Descanso terminado a las ${horaDescansoFin}`);
 
-    // Restaurar el estado inicial del descanso
-    $(this).addClass("d-none");
-    $("#btn-descanso").removeClass("d-none");
-    $("#estado").text("Trabajando")
-        .removeClass("estado-descanso estado-fuera")
-        .addClass("estado-trabajando");
+            // Restaurar el estado inicial del descanso
+            $(this).addClass("d-none");
+            $("#btn-descanso").removeClass("d-none");
+            $("#estado").text("Trabajando")
+                .removeClass("estado-descanso estado-fuera")
+                .addClass("estado-trabajando");
 
-    // Cambiar icono
-    $("#icono-estado").attr("class", "fas fa-briefcase");
+            // Cambiar icono
+            $("#icono-estado").attr("class", "fas fa-briefcase");
+
+        })
+        .catch(() => {
+            // Si el usuario cancela la acción, registra un mensaje en la consola
+            console.log("Acción cancelada");
+        });
+
 });
 
 // Función para agregar un nuevo evento al historial con fecha, hora y mensaje
@@ -137,10 +168,10 @@ function agregarHistorial(mensaje) {
 $('#mostrar-historial').click(function () {
     if ($historialList.is(':visible')) {
         $historialList.slideUp();
-        $mostrarHistorial.html('<i class="fas fa-eye"></i>'); // Icono para mostrar
+        $mostrarHistorial.html('<i class="fas fa-eye"></i>');
     } else {
         $historialList.slideDown();
-        $mostrarHistorial.html('<i class="fas fa-eye-slash"></i>'); // Icono para ocultar
+        $mostrarHistorial.html('<i class="fas fa-eye-slash"></i>');
     }
 });
 
@@ -148,3 +179,38 @@ $('#mostrar-historial').click(function () {
 $('#borrar-historial').click(function () {
     $historialList.html(''); // Borra todos los elementos de la lista
 });
+
+/**
+ * Muestra un cuadro de diálogo de confirmación con una promesa.
+ * @param {string} pregunta - La pregunta a mostrar en el cuadro de diálogo.
+ * @returns {Promise} - Se resuelve si el usuario acepta, se rechaza si cancela.
+ */
+function mostrarDialogo(pregunta) {
+    return new Promise((resolve, reject) => {
+        const $dialogo = $('#confirmar-accion');
+
+        // Mostrar el diálogo
+        $dialogo.css("display", "flex");
+        $dialogo.find('p').text(pregunta);
+
+        // Evento para capturar clics fuera del diálogo
+        $(document).on('mousedown', function (e) {
+            if (!$(e.target).closest('#confirmar-accion').length) {
+                $dialogo.css("display", "none");
+                reject(); // Rechazar la promesa
+            }
+        });
+
+        // Cuando el usuario hace clic en "Cancelar"
+        $('#cancelar-accion').off('click').on('click', function () {
+            $dialogo.css("display", "none");
+            reject(); // Rechazar la promesa
+        });
+
+        // Cuando el usuario hace clic en "Aceptar"
+        $('#aceptar-accion').off('click').on('click', function () {
+            $dialogo.css("display", "none");
+            resolve(); // Resolver la promesa
+        });
+    });
+}

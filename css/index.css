@@ -76,7 +76,7 @@ legend{
 }
 /* Contenedor del formulario de login  */
 .login {
-    /* background: url('../img/pista2.png') no-repeat center center/cover;     */
+    
     text-align: center;
     padding: 100px 0;
     /* display: none;     */
@@ -98,7 +98,7 @@ legend{
 }
 /* Contenedor del formulario de registro  */
 .registro {
-    /* background: url('../img/registro.png') no-repeat center center/cover; */
+    
     /* filter: blur(50%); */
     display: none;
     height: 100vh ;
